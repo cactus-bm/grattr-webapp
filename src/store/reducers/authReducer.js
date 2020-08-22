@@ -1,5 +1,6 @@
 const initState = {
-    signInError: null
+    signInError: null,
+    signUpError: null
 }
 
 const authReducer = (state = initState, action) => {

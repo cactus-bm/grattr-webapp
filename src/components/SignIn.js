@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { signInUser } from "../store/actions/authActions";
 import { TextField, InputLabel, Button, Box } from "@material-ui/core";
 import styled from "@emotion/styled";
+import { Redirect } from "react-router-dom";
 
 const SignInWrapper = styled.div`
     margin: 0 auto;
@@ -16,7 +17,7 @@ const SignInWrapper = styled.div`
     }
 `;
 
-const SignIn = ({ signIn, signInError }) => {
+const SignIn = ({ signIn, signInError, auth }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -25,6 +26,8 @@ const SignIn = ({ signIn, signInError }) => {
         console.log(email)
         signIn(email, password)
     }
+
+    if (auth.uid) return <Redirect to="/" />;
 
     return (
         <SignInWrapper>
@@ -41,19 +44,21 @@ const SignIn = ({ signIn, signInError }) => {
                     <InputLabel htmlFor="signin-password">Password</InputLabel>
                     <TextField id="signin-password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
                 </Box>
-</Box>
+                </Box>
                 <Box m={5}>
                     <Button variant="contained" color="primary" type="submit">Sign In</Button>
                 </Box>
-</Box>
+                </Box>
             </form>
         </SignInWrapper>
     )
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        signInError: state.auth.signInError
+        signInError: state.auth.signInError,
+        auth: state.firebaseAuth.auth
     }
 }
 
