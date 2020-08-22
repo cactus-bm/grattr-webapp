@@ -1,9 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux';
+import { signInUser } from "../store/actions/authActions";
+import { TextField, InputLabel, Button, Box } from "@material-ui/core";
+import styled from "@emotion/styled";
 
-export default function SignIn() {
+const SignInWrapper = styled.div`
+    margin: 0 auto;
+    background: #eee;
+    text-align: center;
+    height: 100vh;
+    flex: 1;
+
+    form {
+        width: 300px;
+        margin: 0 auto;
+    }
+`;
+
+const SignIn = ({ signIn, signInError }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(email)
+        signIn(email, password)
+    }
+
     return (
-        <div>
-            SignIn
-        </div>
+        <SignInWrapper>
+            <h1>Sign In</h1>
+            <p>{signInError}</p>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit} >
+                <Box mx="auto">
+                <Box>
+                <Box m={5}>
+                    <InputLabel htmlFor="signin-username">Username</InputLabel>
+                    <TextField id="signin-username" mt={50} value={email} onChange={e => setEmail(e.target.value)} />
+                </Box>
+                <Box m={5}>
+                    <InputLabel htmlFor="signin-password">Password</InputLabel>
+                    <TextField id="signin-password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                </Box>
+</Box>
+                <Box m={5}>
+                    <Button variant="contained" color="primary" type="submit">Sign In</Button>
+                </Box>
+</Box>
+            </form>
+        </SignInWrapper>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        signInError: state.auth.signInError
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (credentials) => dispatch(signInUser(credentials))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
