@@ -1,15 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import styled from "@emotion/styled"
+import SideBar from "./components/SideBar"
+import Header from "./components/Header"
+import Dashboard from "./components/Dashboard"
+
+const AppWrapper = styled.div``;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Grattr</h1>
-      </header>
-    </div>
+    <AppWrapper>
+
+      <Header></Header>
+      <SideBar></SideBar>
+      <Dashboard></Dashboard>      
+    </AppWrapper>
   );
 }
 
