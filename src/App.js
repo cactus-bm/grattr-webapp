@@ -1,21 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route } from "react-router-dom"
 import styled from "@emotion/styled"
-import SideBar from "./components/SideBar"
-import Header from "./components/Header"
-import Dashboard from "./components/Dashboard"
+import Home from "./components/Home"
+import Welcome from "./components/Welcome"
 
 const AppWrapper = styled.div``;
 
 function App() {
   return (
-    <AppWrapper>
-
-      <Header></Header>
-      <SideBar></SideBar>
-      <Dashboard></Dashboard>      
-    </AppWrapper>
+    <BrowserRouter>
+      <AppWrapper>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/welcome" component={Welcome} />    
+      </AppWrapper>
+    </BrowserRouter>
   );
 }
 
