@@ -9,7 +9,6 @@ const SignInWrapper = styled.div`
     background: #eee;
     text-align: center;
     height: 100vh;
-    flex: 1;
 
     form {
         width: 300px;
