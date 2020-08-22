@@ -9,7 +9,7 @@ export const signInUser = (credentials) => {
         dispatch({ type: "SIGN_IN_SUCCESS" })
     })
     .catch((err) => {
-        dispatch({ type: "SIGN_IN_ERROR" })
+        dispatch({ type: "SIGN_IN_ERROR", err })
     })
   };
 };

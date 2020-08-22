@@ -24,7 +24,7 @@ const SignIn = ({ signIn, signInError, auth }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email)
-        signIn(email, password)
+        signIn({email, password})
     }
 
     if (auth.uid) return <Redirect to="/" />;
