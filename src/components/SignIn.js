@@ -37,8 +37,8 @@ const SignIn = ({ signIn, signInError, auth }) => {
                 <Box mx="auto">
                 <Box>
                 <Box m={5}>
-                    <InputLabel htmlFor="signin-username">Username</InputLabel>
-                    <TextField id="signin-username" mt={50} value={email} onChange={e => setEmail(e.target.value)} />
+                    <InputLabel htmlFor="signin-email">Email</InputLabel>
+                    <TextField id="signin-email" mt={50} value={email} onChange={e => setEmail(e.target.value)} />
                 </Box>
                 <Box m={5}>
                     <InputLabel htmlFor="signin-password">Password</InputLabel>

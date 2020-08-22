@@ -42,8 +42,8 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
             <Box mx="auto">
                 <Box>
                     <Box m={5}>
-                        <InputLabel htmlFor="signup-username">Username</InputLabel>
-                        <TextField id="signup-username" mt={50} value={email} onChange={e => setEmail(e.target.value)} />
+                        <InputLabel htmlFor="signup-email">Email</InputLabel>
+                        <TextField id="signup-email" mt={50} value={email} onChange={e => setEmail(e.target.value)} />
                     </Box>
                     <Box m={5}>
                         <InputLabel htmlFor="signup-password">Password</InputLabel>
