@@ -38,3 +38,18 @@ export const signUpUser = (credentials) => {
       });
   };
 };
+
+export const signOutUser = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    firebase
+    .auth()
+    .signOut()
+    .then(() => {
+        dispatch({ type: "SIGN_OUT_SUCCESS" })
+    })
+    .catch((err) => {
+        dispatch({ type: "SIGN_OUT_ERROR", err })
+    })
+  };
+};
