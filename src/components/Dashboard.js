@@ -78,14 +78,14 @@ const Dashboard = ({
         </Box>
         {selectorList}
         {!updateError && lastUpdated && (
-          <Box pt={3} pb={3}>
+          <Box pt={2}>
             <Alert severity="success">
               Last synced <Moment fromNow>{lastUpdated}</Moment>
             </Alert>
           </Box>
         )}
         {updateError && (
-          <Box pt={3} pb={3}>
+          <Box pt={2}>
             <Alert severity="error">
               An error occured <Moment fromNow>{lastUpdated}</Moment>.{" "}
               {updateError}

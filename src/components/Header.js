@@ -5,7 +5,7 @@ import { Button, Grid, Box, Container } from "@material-ui/core";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 
-  const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
@@ -22,7 +22,6 @@ const ColorButton = withStyles((theme) => ({
     },
   },
 }))(Button);
-
 
 const Header = ({ auth, signOut }) => {
   const classes = useStyles();
