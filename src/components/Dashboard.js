@@ -8,7 +8,14 @@ import {
   dispatchGetAttributes,
 } from "../store/actions/attributeActions";
 import Moment from "react-moment";
-import { Container, Typography, Box, Divider, InputLabel, TextField } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  Box,
+  Divider,
+  InputLabel,
+  TextField,
+} from "@material-ui/core";
 
 const Dashboard = ({
   lastUpdated,
@@ -18,14 +25,19 @@ const Dashboard = ({
   snapshot,
   getAttributes,
 }) => {
-  const [state, setState] = useState([]);
-  const [customAttribute, setCustomAttribute] = useState("")
+  const [state, setState] = useState(null);
+  const [customAttribute, setCustomAttribute] = useState("");
 
   useEffect(() => {
     getAttributes();
   }, [getAttributes]);
 
   if (snapshot == null) {
+    return <Whirligig></Whirligig>;
+  }
+
+  if (state === null) {
+    setState(snapshot);
     return <Whirligig></Whirligig>;
   }
 
@@ -39,8 +51,7 @@ const Dashboard = ({
   }
 
   const isChecked = (label) => {
-    console.log(snapshot);
-    return snapshot.includes(label);
+    return state.includes(label);
   };
 
   const selectorList =
@@ -67,20 +78,26 @@ const Dashboard = ({
         </Box>
         {selectorList}
         {!updateError && lastUpdated && (
-          <Alert severity="success">
-            Last synced <Moment fromNow>{lastUpdated}</Moment>
-          </Alert>
+          <Box pt={3} pb={3}>
+            <Alert severity="success">
+              Last synced <Moment fromNow>{lastUpdated}</Moment>
+            </Alert>
+          </Box>
         )}
         {updateError && (
-          <Alert severity="error">
-            An error occured <Moment fromNow>{lastUpdated}</Moment>.{" "}
-            {updateError}
-          </Alert>
+          <Box pt={3} pb={3}>
+            <Alert severity="error">
+              An error occured <Moment fromNow>{lastUpdated}</Moment>.{" "}
+              {updateError}
+            </Alert>
+          </Box>
         )}
         <Box pt={3} pb={3}>
           <Divider mt={5} />
         </Box>
-        <InputLabel htmlFor="custom-attribute">Add custom attribute:</InputLabel>
+        <InputLabel htmlFor="custom-attribute">
+          Add custom attribute:
+        </InputLabel>
         <TextField
           id="custom-attribute"
           mt={50}
@@ -150,11 +167,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
-// export default compose(
-//   connect(mapStateToProps, mapDispatchToProps),
-//   firestoreConnect((props) => {
-//     return [
-//       { collection: "attributes", document: props.email, orderBy: ["attributes", "asc"] }
-//     ];
-//   })
-// )(Dashboard);
