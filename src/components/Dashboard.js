@@ -40,12 +40,12 @@ const Dashboard = ({ lastUpdated, updateError, updateAttributes }) => {
       {selectorList}
       {!updateError && lastUpdated && (
         <Alert severity="success">
-          Last synced at <Moment fromNow>{lastUpdated}</Moment>
+          Last synced <Moment fromNow>{lastUpdated}</Moment>
         </Alert>
       )}
       {updateError && (
         <Alert severity="error">
-          {updateError} at <Moment fromNow>{lastUpdated}</Moment>
+          An error occured <Moment fromNow>{lastUpdated}</Moment>. {updateError}
         </Alert>
       )}
     </div>
