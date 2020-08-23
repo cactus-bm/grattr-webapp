@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import AttributeSelector from "./AttributeSelector";
+import { Alert } from "@material-ui/lab";
+import { dispatchAttributes } from "../store/actions/attributeActions";
+import Moment from "react-moment";
 
-export default function Dashboard() {
+const Dashboard = ({ lastUpdated, updateError, updateAttributes }) => {
   const [state, setState] = useState(user);
 
   function manipulateState(label, isChecked) {
-    console.log(label, isChecked);
-    const removed = state.filter((x) => x !== label);
+    let newState = state.filter((x) => x !== label);
     if (isChecked) {
-      setState([...removed, label]);
-    } else {
-      setState(removed);
+      newState = [...newState, label];
     }
+    setState(newState);
+    console.log("Firing Attributes");
+    updateAttributes(newState);
   }
 
   const isChecked = (label) => {
@@ -31,15 +35,36 @@ export default function Dashboard() {
       );
     });
 
-  return <div>{selectorList}</div>;
-}
+  return (
+    <div>
+      {selectorList}
+      {!updateError && lastUpdated && (
+        <Alert severity="success">
+          Last synced at <Moment fromNow>{lastUpdated}</Moment>
+        </Alert>
+      )}
+      {updateError && (
+        <Alert severity="error">
+          {updateError} at <Moment fromNow>{lastUpdated}</Moment>
+        </Alert>
+      )}
+    </div>
+  );
+};
 
 const labels = ["Male", "Female", "Bermudian", "British", "American"];
 const user = ["Male", "British"];
 
+const mapStateToProps = (state) => {
+  return {
+    lastUpdated: state.attributes.lastUpdated,
+    updateError: state.attributes.updateError,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (credentials) => dispatch(signInUser(credentials)),
+    updateAttributes: (attributes) => dispatch(dispatchAttributes(attributes)),
   };
 };
 
