@@ -6,7 +6,7 @@ import { dispatchAttributes } from "../store/actions/attributeActions";
 import Moment from "react-moment";
 import { Container, Typography, Box } from "@material-ui/core";
 
-const Dashboard = ({ lastUpdated, updateError, updateAttributes }) => {
+const Dashboard = ({ lastUpdated, updateError, updateAttributes, email }) => {
   const [state, setState] = useState(user);
 
   function manipulateState(label, isChecked) {
@@ -39,7 +39,7 @@ const Dashboard = ({ lastUpdated, updateError, updateAttributes }) => {
     <Container maxWidth="md">
       <Box pt={3} pb={3}>
         <Typography variant="h5" component="h5" gutterBottom>
-          My Attributes
+          Attributes for {email}
         </Typography>
         {selectorList}
         {!updateError && lastUpdated && (
@@ -103,6 +103,7 @@ const mapStateToProps = (state) => {
   return {
     lastUpdated: state.attributes.lastUpdated,
     updateError: state.attributes.updateError,
+    email: state.firebaseAuth.auth.email,
   };
 };
 

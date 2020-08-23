@@ -19,6 +19,7 @@ import {
   isLoaded,
 } from "react-redux-firebase";
 import firebaseConfig from "./config/firebaseConfig";
+import { CircularProgress, Grid } from "@material-ui/core";
 
 const store = createStore(
   rootReducer,
@@ -43,7 +44,7 @@ const rrfProps = {
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebaseAuth.auth);
   if (!isLoaded(auth)) {
-    return <div>Loading...</div>;
+    return <Grid style={{ height: "100vh" }} container alignItems="center" justify="center"><CircularProgress /></Grid>;
   }
   return children;
 }
