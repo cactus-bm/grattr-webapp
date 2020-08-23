@@ -1,2 +1,3 @@
-# grattr-webapp
-The webapp for grattr.org
+## Grattr - Globally Recognized Attributes
+
+The webapp for [grattr.org](https://grattr.org).
