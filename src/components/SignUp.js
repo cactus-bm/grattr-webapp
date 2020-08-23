@@ -8,22 +8,15 @@ import {
   Button,
   Box,
   Typography,
-  Grid,
 } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
 const SignUpWrapper = styled.div`
   background: #fcecff;
   height: calc(100vh - 5rem);
 `;
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
 
 const ColorButton = withStyles((theme) => ({
   root: {

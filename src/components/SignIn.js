@@ -10,19 +10,13 @@ import {
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import { Redirect } from "react-router-dom";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
 const SignInWrapper = styled.div`
   background: #f4e5f7;
   height: calc(100vh - 5rem);
 `;
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
 
 const ColorButton = withStyles((theme) => ({
   root: {

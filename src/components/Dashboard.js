@@ -8,14 +8,7 @@ import {
   dispatchGetAttributes,
 } from "../store/actions/attributeActions";
 import Moment from "react-moment";
-import {
-  Container,
-  Typography,
-  Box,
-  Divider,
-  InputLabel,
-  TextField,
-} from "@material-ui/core";
+import { Container, Typography, Box, Divider } from "@material-ui/core";
 
 const Dashboard = ({
   lastUpdated,
@@ -26,11 +19,10 @@ const Dashboard = ({
   getAttributes,
 }) => {
   const [state, setState] = useState(null);
-  const [customAttribute, setCustomAttribute] = useState("");
 
   useEffect(() => {
     getAttributes();
-  }, [getAttributes]);
+  }, [state, getAttributes]);
 
   if (snapshot == null) {
     return <Whirligig></Whirligig>;
@@ -92,18 +84,6 @@ const Dashboard = ({
             </Alert>
           </Box>
         )}
-        <Box pt={3} pb={3}>
-          <Divider mt={5} />
-        </Box>
-        <InputLabel htmlFor="custom-attribute">
-          Add custom attribute:
-        </InputLabel>
-        <TextField
-          id="custom-attribute"
-          mt={50}
-          value={customAttribute}
-          onChange={(e) => setCustomAttribute(e.target.value)}
-        />
       </Box>
     </Container>
   );
@@ -166,4 +146,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
-
