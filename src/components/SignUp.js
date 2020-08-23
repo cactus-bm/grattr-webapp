@@ -15,15 +15,8 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
 const SignUpWrapper = styled.div`
-  margin: 0 auto;
   background: #fcecff;
-  text-align: center;
-  height: 100vh;
-
-  form {
-    width: 300px;
-    margin: 0 auto;
-  }
+  height: calc(100vh - 5rem);
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +56,7 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
   if (redirect) return <Redirect to="/email-sent" />;
   return (
     <SignUpWrapper>
-      <Box pt={10}>
+      <Box p={10}>
         <Typography variant="h4" component="h4" gutterBottom>
           Sign Up
         </Typography>
@@ -71,25 +64,27 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Box mx="auto">
             <Box>
-              <Box m={5}>
+              <Box my={5}>
                 <InputLabel htmlFor="signup-email">Email</InputLabel>
                 <TextField
                   id="signup-email"
                   mt={50}
                   value={email}
+                  fullWidth
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Box>
-              <Box m={5}>
+              <Box my={5}>
                 <InputLabel htmlFor="signup-password">Password</InputLabel>
                 <TextField
                   id="signup-password"
                   type="password"
                   value={password}
+                  fullWidth
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Box>
-              <Box m={5}>
+              <Box my={5}>
                 <InputLabel htmlFor="signup-password-2">
                   Confirm Password
                 </InputLabel>
@@ -97,12 +92,13 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
                   id="signup-password-2"
                   type="password"
                   value={confirmPassword}
+                  fullWidth
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   error={!confirmPasswordsMatch()}
                 />
               </Box>
             </Box>
-            <Box m={5}>
+            <Box>
               <ColorButton variant="contained" disableElevation type="submit">
                 Sign Up
               </ColorButton>

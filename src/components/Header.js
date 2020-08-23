@@ -40,7 +40,7 @@ const Header = ({ auth, signOut }) => {
 
 
   return (
-    <div style={{ boxShadow: "0px 0px 4px 1px #00000029" }}>
+    <div style={{ height: "5rem", boxShadow: "0px 0px 4px 1px #00000029" }}>
       <Container maxWidth="md" style={{ color: "#212121" }}>
         <Grid container className="container" alignItems="center">
           <Grid item xs={10}>

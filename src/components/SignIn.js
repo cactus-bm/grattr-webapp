@@ -6,23 +6,16 @@ import {
   InputLabel,
   Button,
   Box,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import { Redirect } from "react-router-dom";
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { purple } from "@material-ui/core/colors";
 
 const SignInWrapper = styled.div`
-  margin: 0 auto;
   background: #f4e5f7;
-  text-align: center;
-  height: 100vh;
-
-  form {
-    width: 300px;
-    margin: 0 auto;
-  }
+  height: calc(100vh - 5rem);
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +30,7 @@ const ColorButton = withStyles((theme) => ({
     fontSize: 13,
     fontWeight: 900,
     backgroundColor: purple[300],
-    '&:hover': {
+    "&:hover": {
       backgroundColor: purple[600],
     },
   },
@@ -56,40 +49,42 @@ const SignIn = ({ signIn, signInError, auth }) => {
 
   return (
     <SignInWrapper>
-      <Box pt={10}>
-      <Typography variant="h4" component="h4" gutterBottom>
-        Sign In
-      </Typography>
-      <p>{signInError}</p>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Box mx="auto">
-          <Box>
-            <Box m={5}>
-              <InputLabel htmlFor="signin-email">Email</InputLabel>
-              <TextField
-                id="signin-email"
-                mt={50}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+      <Box p={10}>
+        <Typography variant="h4" component="h4" gutterBottom>
+          Sign In
+        </Typography>
+        <p>{signInError}</p>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Box mx="auto">
+            <Box>
+              <Box mt={5}>
+                <InputLabel htmlFor="signin-email">Email</InputLabel>
+                <TextField
+                  fullWidth
+                  id="signin-email"
+                  mt={50}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Box>
+              <Box my={5}>
+                <InputLabel htmlFor="signin-password">Password</InputLabel>
+                <TextField
+                  fullWidth
+                  id="signin-password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Box>
             </Box>
-            <Box m={5}>
-              <InputLabel htmlFor="signin-password">Password</InputLabel>
-              <TextField
-                id="signin-password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <Box mt={5}>
+              <ColorButton variant="contained" disableElevation type="submit">
+                Sign In
+              </ColorButton>
             </Box>
           </Box>
-          <Box m={5}>
-            <ColorButton variant="contained" disableElevation type="submit">
-              Sign In
-            </ColorButton>
-          </Box>
-        </Box>
-      </form>
+        </form>
       </Box>
     </SignInWrapper>
   );
