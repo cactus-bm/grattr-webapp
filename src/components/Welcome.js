@@ -12,7 +12,7 @@ const WelcomeWrapper = styled.div`
 export default function Welcome() {
     return (
         <WelcomeWrapper>
-            <Grid container spacing={1}>
+            <Grid container> 
                 <Grid container item alignItems="stretch">
                     <Grid item xs={12}>
                         <Header></Header>
