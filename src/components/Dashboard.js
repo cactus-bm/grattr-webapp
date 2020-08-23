@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AttributeSelector from "./AttributeSelector";
 import { Alert } from "@material-ui/lab";
-import { dispatchAttributes } from "../store/actions/attributeActions";
+import {
+  dispatchAttributes,
+  dispatchGetAttributes,
+} from "../store/actions/attributeActions";
 import Moment from "react-moment";
 import { Container, Typography, Box } from "@material-ui/core";
 
-const Dashboard = ({ lastUpdated, updateError, updateAttributes, email }) => {
-  const [state, setState] = useState(user);
+const Dashboard = ({
+  lastUpdated,
+  updateError,
+  updateAttributes,
+  email,
+  snapshot,
+  getAttributes,
+}) => {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    getAttributes();
+  }, []);
 
   function manipulateState(label, isChecked) {
     let newState = state.filter((x) => x !== label);
@@ -19,7 +33,8 @@ const Dashboard = ({ lastUpdated, updateError, updateAttributes, email }) => {
   }
 
   const isChecked = (label) => {
-    return state.includes(label);
+    console.log(snapshot);
+    return snapshot.includes(label);
   };
 
   const selectorList =
@@ -97,20 +112,30 @@ const labels = [
   "Unemployed",
   "Underemployed",
 ].sort();
-const user = ["Male", "British"];
 
 const mapStateToProps = (state) => {
   return {
     lastUpdated: state.attributes.lastUpdated,
     updateError: state.attributes.updateError,
     email: state.firebaseAuth.auth.email,
+    snapshot: state.attributes.snapshot,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateAttributes: (attributes) => dispatch(dispatchAttributes(attributes)),
+    getAttributes: () => dispatch(dispatchGetAttributes()),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+// export default compose(
+//   connect(mapStateToProps, mapDispatchToProps),
+//   firestoreConnect((props) => {
+//     return [
+//       { collection: "attributes", document: props.email, orderBy: ["attributes", "asc"] }
+//     ];
+//   })
+// )(Dashboard);

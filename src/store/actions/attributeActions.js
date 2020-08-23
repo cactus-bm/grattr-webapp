@@ -17,3 +17,20 @@ export const dispatchAttributes = (attributes) => {
       });
   };
 };
+
+export const dispatchGetAttributes = () => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    const email = getState().firebaseAuth.auth.email;
+    firestore
+      .collection("attributes")
+      .doc(email)
+      .get()
+      .then(snapshot => {
+        dispatch({ type: "GET_ATTRIBUTES_SUCCESS", snapshot });
+      })
+      .catch((err) => {
+        dispatch({ type: "GET_ATTRIBUTES_ERROR", err });
+      });
+  };
+};
