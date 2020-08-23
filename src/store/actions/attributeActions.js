@@ -5,7 +5,7 @@ export const dispatchAttributes = (attributes) => {
     firestore
       .collection("attributes")
       .doc(email)
-      .update({
+      .set({
         attributes,
         email,
       })

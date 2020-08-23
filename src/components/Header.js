@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "@emotion/styled"
 import { connect } from "react-redux"
 import { signOutUser } from "../store/actions/authActions"
-import { Button, Grid, Box } from "@material-ui/core"
+import { Button, Grid, Box, Container } from "@material-ui/core"
 
 const HeaderWrapper = styled.div`
     background: #212121;
@@ -30,8 +30,9 @@ const Header = ({ auth, signOut }) => {
         }
     }
     return (
-        <HeaderWrapper>
-            <Grid container className="container">
+        <div style={{ backgroundColor: '#212121' }}>
+        <Container maxWidth="md" style={{ color: '#ffffff' }}>
+            <Grid container className="container" alignItems="center">
                 <Grid item xs={10}>
                     <h1>Grattr</h1>      
                 </Grid>
@@ -41,7 +42,8 @@ const Header = ({ auth, signOut }) => {
                     </Box>
                 </Grid>
             </Grid>
-        </HeaderWrapper>
+        </Container>
+        </div>
     )
 }
 
