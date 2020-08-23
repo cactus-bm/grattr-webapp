@@ -26,8 +26,15 @@ export const dispatchGetAttributes = () => {
       .collection("attributes")
       .doc(email)
       .get()
-      .then(snapshot => {
-        dispatch({ type: "GET_ATTRIBUTES_SUCCESS", snapshot });
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          dispatch({
+            type: "GET_ATTRIBUTES_SUCCESS",
+            attributes: snapshot.data().attributes,
+          });
+        } else {
+          dispatch({ type: "GET_ATTRIBUTES_UNKNOWN" });
+        }
       })
       .catch((err) => {
         dispatch({ type: "GET_ATTRIBUTES_ERROR", err });

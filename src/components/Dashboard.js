@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AttributeSelector from "./AttributeSelector";
+import Whirligig from "./Whirligig";
 import { Alert } from "@material-ui/lab";
 import {
   dispatchAttributes,
@@ -22,6 +23,10 @@ const Dashboard = ({
   useEffect(() => {
     getAttributes();
   }, []);
+
+  if (snapshot == null) {
+    return <Whirligig></Whirligig>;
+  }
 
   function manipulateState(label, isChecked) {
     let newState = state.filter((x) => x !== label);

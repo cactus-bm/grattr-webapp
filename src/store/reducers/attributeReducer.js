@@ -1,7 +1,7 @@
 const initState = {
   lastUpdated: null,
   updateError: null,
-  snapshot: [],
+  snapshot: null,
   getError: null,
 };
 
@@ -19,10 +19,16 @@ const attributeReducer = (state = initState, action) => {
         updateError: action.err.message,
         lastUpdated: new Date().toISOString(),
       };
+    case "GET_ATTRIBUTES_UNKNOWN":
+      return {
+        ...state,
+        snapshot: [],
+        getError: null,
+      };
     case "GET_ATTRIBUTES_SUCCESS":
       return {
         ...state,
-        snapshot: action.snapshot.data().attributes,
+        snapshot: action.attributes,
         getError: null,
       };
     case "GET_ATTRIBUTES_ERROR":

@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 import { createStore, compose, applyMiddleware } from "redux";
 import { Provider, useSelector } from "react-redux";
 import firebase from "firebase/app";
 import rootReducer from "./store/reducers/rootReducer";
+import Whirligig from "./components/Whirligig";
 import thunk from "redux-thunk";
 import {
   reduxFirestore,
@@ -19,7 +20,6 @@ import {
   isLoaded,
 } from "react-redux-firebase";
 import firebaseConfig from "./config/firebaseConfig";
-import { CircularProgress, Grid } from "@material-ui/core";
 
 const store = createStore(
   rootReducer,
@@ -44,7 +44,7 @@ const rrfProps = {
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebaseAuth.auth);
   if (!isLoaded(auth)) {
-    return <Grid style={{ height: "100vh" }} container alignItems="center" justify="center"><CircularProgress /></Grid>;
+    return <Whirligig></Whirligig>;
   }
   return children;
 }
@@ -59,7 +59,7 @@ ReactDOM.render(
       </ReactReduxFirebaseProvider>
     </React.StrictMode>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
