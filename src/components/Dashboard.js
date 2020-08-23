@@ -7,7 +7,7 @@ import {
   dispatchGetAttributes,
 } from "../store/actions/attributeActions";
 import Moment from "react-moment";
-import { Container, Typography, Box } from "@material-ui/core";
+import { Container, Typography, Box, Divider, InputLabel, TextField } from "@material-ui/core";
 
 const Dashboard = ({
   lastUpdated,
@@ -18,10 +18,11 @@ const Dashboard = ({
   getAttributes,
 }) => {
   const [state, setState] = useState([]);
+  const [customAttribute, setCustomAttribute] = useState("")
 
   useEffect(() => {
     getAttributes();
-  }, []);
+  }, [getAttributes]);
 
   function manipulateState(label, isChecked) {
     let newState = state.filter((x) => x !== label);
@@ -52,10 +53,13 @@ const Dashboard = ({
 
   return (
     <Container maxWidth="md">
-      <Box pt={3} pb={3}>
-        <Typography variant="h5" component="h5" gutterBottom>
+      <Box pt={7} pb={3}>
+        <Typography variant="h6" component="h6">
           Attributes for {email}
         </Typography>
+        <Box pt={3} pb={3}>
+          <Divider mt={5} />
+        </Box>
         {selectorList}
         {!updateError && lastUpdated && (
           <Alert severity="success">
@@ -68,6 +72,16 @@ const Dashboard = ({
             {updateError}
           </Alert>
         )}
+        <Box pt={3} pb={3}>
+          <Divider mt={5} />
+        </Box>
+        <InputLabel htmlFor="custom-attribute">Add custom attribute:</InputLabel>
+        <TextField
+          id="custom-attribute"
+          mt={50}
+          value={customAttribute}
+          onChange={(e) => setCustomAttribute(e.target.value)}
+        />
       </Box>
     </Container>
   );
