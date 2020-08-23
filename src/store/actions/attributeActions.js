@@ -10,11 +10,9 @@ export const dispatchAttributes = (attributes) => {
         email,
       })
       .then(() => {
-        console.log("Worked");
         dispatch({ type: "UPDATE_ATTRIBUTES_SUCCESS" });
       })
       .catch((err) => {
-        console.log("Not worked", err);
         dispatch({ type: "UPDATE_ATTRIBUTES_ERROR", err });
       });
   };
