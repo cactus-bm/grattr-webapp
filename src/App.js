@@ -4,7 +4,7 @@ import Home from "./components/Home";
 import Welcome from "./components/Welcome";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/apm";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
 Sentry.init({
   dsn:
@@ -15,17 +15,16 @@ Sentry.init({
 
 const App = ({ auth }) => {
   if (auth.uid) {
-    return <Home></Home>
-  }
-  else {
-    return <Welcome></Welcome>
+    return <Home></Home>;
+  } else {
+    return <Welcome></Welcome>;
   }
 };
 
 const mapStateToProps = (state) => {
-    return {
-        auth: state.firebaseAuth.auth
-    }
-}
+  return {
+    auth: state.firebaseAuth.auth,
+  };
+};
 
 export default connect(mapStateToProps)(App);
