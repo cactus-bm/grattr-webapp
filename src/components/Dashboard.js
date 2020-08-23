@@ -135,6 +135,7 @@ const mapStateToProps = (state) => {
     updateError: state.attributes.updateError,
     email: state.firebaseAuth.auth.email,
     snapshot: state.attributes.snapshot,
+    emailSentError: state.attributes.emailSentError
   };
 };
 

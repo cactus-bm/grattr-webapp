@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./components/Home";
+import AwaitEmail from "./components/AwaitEmail";
 import Welcome from "./components/Welcome";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/apm";
@@ -14,8 +15,10 @@ Sentry.init({
 });
 
 const App = ({ auth }) => {
-  if (auth.uid) {
+  if (auth.uid && auth.emailVerified) {
     return <Home></Home>;
+  } else if (auth.uid) {
+    return <AwaitEmail email={auth.email}></AwaitEmail>;
   } else {
     return <Welcome></Welcome>;
   }

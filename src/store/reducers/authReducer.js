@@ -2,7 +2,8 @@ const initState = {
     signUpError: null,
     signInError: null,
     signOutError: null,
-    redirectToEmail: false
+    redirectToEmail: false,
+    emailSentError: null
 }
 
 const authReducer = (state = initState, action) => {
@@ -12,7 +13,12 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 redirectToEmail: true
             }
-        case "SIGN_UP_ERROR":
+        case "SIGN_UP_EMAIL_FAILED":
+            return {
+                ...state,
+                signUpError: action.err.message
+            }
+        case "FAILED_TO_CREATE_USER":
             return {
                 ...state,
                 signUpError: action.err.message
