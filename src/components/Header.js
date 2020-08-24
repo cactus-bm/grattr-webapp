@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signOutUser } from "../store/actions/authActions";
-import { Button, Grid, Box, Container } from "@material-ui/core";
+import { Button, Grid, Box, Container, Typography } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
@@ -45,16 +45,22 @@ const Header = ({ auth, signOut }) => {
   };
 
   return (
-    <div style={{ height: "5rem", boxShadow: "0px 0px 4px 1px #00000029" }}>
-      <Container maxWidth="md">
+    <div style={{ padding: "1rem 0", boxShadow: "0px 0px 4px 1px #00000029" }}>
+      <Container maxWidth="md" style={{ color: "#212121" }}>
         <Grid container className="container" alignItems="center">
-          <Grid item xs={10}>
+          <Grid item xs={6}>
             <a href="/" style={{ textDecoration: "none", color: "#212121" }}>
-              <h1>Grattr - Define Yourself</h1>
+              <Typography
+                variant="h4"
+                component="h4"
+                style={{ fontWeight: "bold" }}
+              >
+                Grattr
+              </Typography>
             </a>
           </Grid>
-          <Grid item xs={2}>
-            <Box mml={"auto"}>
+          <Grid item xs={6} align={"right"}>
+            <Box>
               <SignOutLink />
             </Box>
           </Grid>
