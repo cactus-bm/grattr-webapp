@@ -6,7 +6,6 @@ import {
   InputLabel,
   Button,
   Box,
-  Typography,
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import { Redirect } from "react-router-dom";

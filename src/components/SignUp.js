@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { signUpUser } from "../store/actions/authActions";
-import {
-  TextField,
-  InputLabel,
-  Button,
-  Box,
-  Typography,
-} from "@material-ui/core";
+import { TextField, InputLabel, Button, Box } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
