@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Header from "./Header";
 import styled from "@emotion/styled";
-import { Grid } from "@material-ui/core";
+import {
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  Container,
+} from "@material-ui/core";
 
 const WelcomeWrapper = styled.div``;
 
 export default function Welcome() {
+  const [signUpDisplayed, setSignUpDisplayed] = useState(true);
+
   return (
     <WelcomeWrapper>
       <Grid container>
@@ -17,11 +26,47 @@ export default function Welcome() {
           </Grid>
         </Grid>
         <Grid container item alignItems="stretch">
-          <Grid item xs={6}>
-            <SignIn></SignIn>
-          </Grid>
-          <Grid item xs={6}>
-            <SignUp></SignUp>
+          <Grid item xs={12} style={{ height: `calc(100vh - 5rem)` }}>
+            <Accordion
+              expanded={!signUpDisplayed}
+              square
+              style={{ background: "#f4e5f7", margin: 0 }}
+            >
+              <AccordionSummary
+                onClick={() => setSignUpDisplayed(!signUpDisplayed)}
+              >
+                <Container maxWidth="md">
+                  <Typography variant="h4" component="h4" gutterBottom>
+                    Sign In
+                  </Typography>
+                </Container>
+              </AccordionSummary>
+              <AccordionDetails style={{ paddingBottom: "3rem" }}>
+                <Container maxWidth="md">
+                  <SignIn></SignIn>
+                </Container>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              expanded={signUpDisplayed}
+              square
+              style={{ background: "#fcecff", margin: 0 }}
+            >
+              <AccordionSummary
+                onClick={() => setSignUpDisplayed(!signUpDisplayed)}
+              >
+                <Container maxWidth="md">
+                  <Typography variant="h4" component="h4" gutterBottom>
+                    Sign Up
+                  </Typography>
+                </Container>
+              </AccordionSummary>
+              <AccordionDetails style={{ paddingBottom: "3rem" }}>
+                <Container maxWidth="md">
+                  <SignUp></SignUp>
+                </Container>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
         </Grid>
       </Grid>

@@ -1,22 +1,10 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { signUpUser } from "../store/actions/authActions";
-import {
-  TextField,
-  InputLabel,
-  Button,
-  Box,
-  Typography,
-} from "@material-ui/core";
+import { TextField, InputLabel, Button, Box } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
-
-const SignUpWrapper = styled.div`
-  background: #fcecff;
-  height: calc(100vh - 5rem);
-`;
 
 const ColorButton = withStyles((theme) => ({
   root: {
@@ -48,58 +36,51 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
 
   if (redirect) return <Redirect to="/email-sent" />;
   return (
-    <SignUpWrapper>
-      <Box p={10}>
-        <Typography variant="h4" component="h4" gutterBottom>
-          Sign Up
-        </Typography>
-        <p>{signUpError}</p>
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-          <Box mx="auto">
-            <Box>
-              <Box my={5}>
-                <InputLabel htmlFor="signup-email">Email</InputLabel>
-                <TextField
-                  id="signup-email"
-                  mt={50}
-                  value={email}
-                  fullWidth
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Box>
-              <Box my={5}>
-                <InputLabel htmlFor="signup-password">Password</InputLabel>
-                <TextField
-                  id="signup-password"
-                  type="password"
-                  value={password}
-                  fullWidth
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Box>
-              <Box my={5}>
-                <InputLabel htmlFor="signup-password-2">
-                  Confirm Password
-                </InputLabel>
-                <TextField
-                  id="signup-password-2"
-                  type="password"
-                  value={confirmPassword}
-                  fullWidth
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  error={!confirmPasswordsMatch()}
-                />
-              </Box>
-            </Box>
-            <Box>
-              <ColorButton variant="contained" disableElevation type="submit">
-                Sign Up
-              </ColorButton>
-            </Box>
+    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+      <p>{signUpError}</p>
+      <Box mx="auto">
+        <Box>
+          <Box my={5}>
+            <InputLabel htmlFor="signup-email">Email</InputLabel>
+            <TextField
+              id="signup-email"
+              mt={50}
+              value={email}
+              fullWidth
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </Box>
-        </form>
+          <Box my={5}>
+            <InputLabel htmlFor="signup-password">Password</InputLabel>
+            <TextField
+              id="signup-password"
+              type="password"
+              value={password}
+              fullWidth
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Box>
+          <Box my={5}>
+            <InputLabel htmlFor="signup-password-2">
+              Confirm Password
+            </InputLabel>
+            <TextField
+              id="signup-password-2"
+              type="password"
+              value={confirmPassword}
+              fullWidth
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              error={!confirmPasswordsMatch()}
+            />
+          </Box>
+        </Box>
+        <Box>
+          <ColorButton variant="contained" disableElevation type="submit">
+            Sign Up
+          </ColorButton>
+        </Box>
       </Box>
-    </SignUpWrapper>
+    </form>
   );
 };
 
