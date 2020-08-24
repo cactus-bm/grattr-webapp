@@ -4,6 +4,7 @@ import { signOutUser } from "../store/actions/authActions";
 import { Button, Grid, Box, Container } from "@material-ui/core";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
