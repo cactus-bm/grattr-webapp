@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signOutUser } from "../store/actions/authActions";
-import { Button, Grid, Box, Container, Typography } from "@material-ui/core";
+import { Button, Grid, Box, Container } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -18,7 +19,7 @@ const ColorButton = withStyles((theme) => ({
     fontWeight: 900,
     backgroundColor: purple[300],
     "&:hover": {
-      backgroundColor: purple[600],
+      backgroundColor: purple[500],
     },
   },
 }))(Button);
@@ -45,19 +46,13 @@ const Header = ({ auth, signOut }) => {
   };
 
   return (
-    <div style={{ padding: "1rem 0", boxShadow: "0px 0px 4px 1px #00000029" }}>
+    <div style={{ padding: "1rem 0", boxShadow: "0px 0px 4px 1px #00000029", background: "#ffffff", zIndex: "99", position: "relative" }}>
       <Container maxWidth="md" style={{ color: "#212121" }}>
         <Grid container className="container" alignItems="center">
           <Grid item xs={6}>
-            <a href="/" style={{ textDecoration: "none", color: "#212121" }}>
-              <Typography
-                variant="h4"
-                component="h4"
-                style={{ fontWeight: "bold" }}
-              >
-                Grattr
-              </Typography>
-            </a>
+            <Link to="/" style={{ textDecoration: "none", color: "#212121" }}>
+              <img src="logo.png" style={{ width: "200px" }} alt=""/>
+            </Link>
           </Grid>
           <Grid item xs={6} align={"right"}>
             <Box>

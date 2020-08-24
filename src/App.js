@@ -6,6 +6,7 @@ import Welcome from "./components/Welcome";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/apm";
 import { connect } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 Sentry.init({
   dsn:
@@ -16,12 +17,13 @@ Sentry.init({
 
 const App = ({ auth }) => {
   if (auth.uid && auth.emailVerified) {
-    return <Home></Home>;
+    return <BrowserRouter><Home></Home></BrowserRouter>;
   } else if (auth.uid) {
-    return <AwaitEmail email={auth.email}></AwaitEmail>;
+    return <BrowserRouter><AwaitEmail email={auth.email}></AwaitEmail></BrowserRouter>;
   } else {
-    return <Welcome></Welcome>;
+    return <BrowserRouter><Welcome></Welcome></BrowserRouter>;
   }
+  
 };
 
 const mapStateToProps = (state) => {
