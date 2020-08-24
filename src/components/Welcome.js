@@ -3,7 +3,14 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Header from "./Header";
 import styled from "@emotion/styled";
-import { Grid } from "@material-ui/core";
+import {
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  Box,
+} from "@material-ui/core";
 
 const WelcomeWrapper = styled.div``;
 
@@ -17,11 +24,31 @@ export default function Welcome() {
           </Grid>
         </Grid>
         <Grid container item alignItems="stretch">
-          <Grid item xs={6}>
-            <SignIn></SignIn>
-          </Grid>
-          <Grid item xs={6}>
-            <SignUp></SignUp>
+          <Grid item xs={12}>
+            <Accordion square style={{ background: "#f4e5f7" }}>
+              <AccordionSummary style={{ height: "3rem" }}>
+                <Box px={10} my={"auto"}>
+                  <Typography variant="h4" component="h4" gutterBottom>
+                    Sign In
+                  </Typography>
+                </Box>
+              </AccordionSummary>
+              <AccordionDetails>
+                <SignIn></SignIn>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion expanded square style={{ background: "#fcecff" }}>
+              <AccordionSummary style={{ height: "3rem" }}>
+                <Box px={10} my={"auto"}>
+                  <Typography variant="h4" component="h4" gutterBottom>
+                    Sign Up
+                  </Typography>
+                </Box>
+              </AccordionSummary>
+              <AccordionDetails>
+                <SignUp></SignUp>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
         </Grid>
       </Grid>

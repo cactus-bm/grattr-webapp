@@ -14,8 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
 const SignInWrapper = styled.div`
-  background: #f4e5f7;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 11rem);
 `;
 
 const ColorButton = withStyles((theme) => ({
@@ -43,10 +42,7 @@ const SignIn = ({ signIn, signInError, auth }) => {
 
   return (
     <SignInWrapper>
-      <Box p={10}>
-        <Typography variant="h4" component="h4" gutterBottom>
-          Sign In
-        </Typography>
+      <Box px={10} py={0}>
         <p>{signInError}</p>
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Box mx="auto">

@@ -14,8 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 
 const SignUpWrapper = styled.div`
-  background: #fcecff;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 11rem);
 `;
 
 const ColorButton = withStyles((theme) => ({
@@ -49,10 +48,7 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
   if (redirect) return <Redirect to="/email-sent" />;
   return (
     <SignUpWrapper>
-      <Box p={10}>
-        <Typography variant="h4" component="h4" gutterBottom>
-          Sign Up
-        </Typography>
+      <Box px={10} py={0}>
         <p>{signUpError}</p>
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Box mx="auto">
