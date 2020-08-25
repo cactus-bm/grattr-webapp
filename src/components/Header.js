@@ -4,7 +4,6 @@ import { signOutUser } from "../store/actions/authActions";
 import { Button, Grid, Box, Container } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -50,9 +49,9 @@ const Header = ({ auth, signOut }) => {
       <Container maxWidth="md" style={{ color: "#212121" }}>
         <Grid container className="container" alignItems="center">
           <Grid item xs={6}>
-            <Link to="/" style={{ textDecoration: "none", color: "#212121" }}>
+            <a href="/" style={{ textDecoration: "none", color: "#212121", display: "inline-block" }}>
               <img src="logo.png" style={{ width: "200px" }} alt=""/>
-            </Link>
+            </a>
           </Grid>
           <Grid item xs={6} align={"right"}>
             <Box>

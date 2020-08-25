@@ -6,7 +6,6 @@ import Welcome from "./components/Welcome";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/apm";
 import { connect } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 
 Sentry.init({
   dsn:
@@ -15,20 +14,20 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-const App = ({ auth }) => {
-  if (auth.uid && auth.emailVerified) {
-    return <BrowserRouter><Home></Home></BrowserRouter>;
+const App = ({ auth, manuallyVerifiedEmail }) => {
+  if (auth.uid && (auth.emailVerified || auth.email === manuallyVerifiedEmail )) {
+    return <Home></Home>;
   } else if (auth.uid) {
-    return <BrowserRouter><AwaitEmail email={auth.email}></AwaitEmail></BrowserRouter>;
+    return <AwaitEmail auth={auth}></AwaitEmail>;
   } else {
-    return <BrowserRouter><Welcome></Welcome></BrowserRouter>;
+    return <Welcome></Welcome>;
   }
-  
 };
 
 const mapStateToProps = (state) => {
   return {
     auth: state.firebaseAuth.auth,
+    manuallyVerifiedEmail: state.auth.verifiedEmailAddress
   };
 };
 
