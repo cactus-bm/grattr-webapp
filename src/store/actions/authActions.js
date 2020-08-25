@@ -50,3 +50,22 @@ export const signOutUser = () => {
       });
   };
 };
+
+export const checkEmailVerifiedUser = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    firebase
+      .auth()
+      .currentUser
+      .reload()
+      .then(() => {
+        const user = firebase.auth().currentUser;
+        if (user.emailVerified) {
+          dispatch({ type: "CHECK_VERFIFIED_EMAIL_SUCCESS", email: user.email});
+        }
+      })
+      .catch((err) => {
+        dispatch({ type: "CHECK_VERFIFIED_EMAIL_ERROR", err });
+      });
+  };
+};
