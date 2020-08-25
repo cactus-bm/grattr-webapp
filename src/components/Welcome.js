@@ -11,11 +11,35 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const WelcomeWrapper = styled.div``;
+const WelcomeWrapper = styled.div`
+  background: #fcecff
+`;
+
+const useStyles = makeStyles({
+  signInAccordion: {
+    borderBottom: "1px solid rgb(0 0 0 / 9%)",
+    transition: "all 0.2s ease-in-out",
+    background: "#eed9f3",
+    "&:hover": {
+      filter: "brightness(1.02)"
+    }
+  },
+  signUpAccordion: {
+    borderTop: "1px solid rgb(255 255 255 / 50%)",
+    borderBottom: "1px solid rgb(0 0 0 / 9%)",
+    transition: "all 0.2s ease-in-out",
+    background: "#fcecff",
+    "&:hover": {
+      filter: "brightness(1.02)"
+    },
+  }
+})
 
 export default function Welcome() {
   const [signUpDisplayed, setSignUpDisplayed] = useState(true);
+  const classes = useStyles();
 
   return (
     <WelcomeWrapper>
@@ -30,13 +54,15 @@ export default function Welcome() {
             <Accordion
               expanded={!signUpDisplayed}
               square
-              style={{ background: "#f4e5f7", margin: 0 }}
+              style={{ background: "#eed9f3", margin: 0 }}
+              elevation={0}
             >
               <AccordionSummary
                 onClick={() => setSignUpDisplayed(!signUpDisplayed)}
+                className={classes.signInAccordion}
               >
                 <Container maxWidth="md">
-                  <Typography variant="h4" component="h4" gutterBottom>
+                  <Typography variant="h4" component="h4">
                     Sign In
                   </Typography>
                 </Container>
@@ -51,12 +77,14 @@ export default function Welcome() {
               expanded={signUpDisplayed}
               square
               style={{ background: "#fcecff", margin: 0 }}
+              elevation={0}
             >
               <AccordionSummary
                 onClick={() => setSignUpDisplayed(!signUpDisplayed)}
+                className={classes.signUpAccordion}
               >
                 <Container maxWidth="md">
-                  <Typography variant="h4" component="h4" gutterBottom>
+                  <Typography variant="h4" component="h4">
                     Sign Up
                   </Typography>
                 </Container>

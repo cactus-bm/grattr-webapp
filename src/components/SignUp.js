@@ -13,7 +13,7 @@ const ColorButton = withStyles((theme) => ({
     fontWeight: 900,
     backgroundColor: purple[300],
     "&:hover": {
-      backgroundColor: purple[600],
+      backgroundColor: purple[500],
     },
   },
 }))(Button);
@@ -40,16 +40,14 @@ const SignUp = ({ signUp, signUpError, redirect }) => {
       <p>{signUpError}</p>
       <Box mx="auto">
         <Box>
-          <Box my={5}>
-            <InputLabel htmlFor="signup-email">Email</InputLabel>
-            <TextField
-              id="signup-email"
-              mt={50}
-              value={email}
-              fullWidth
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Box>
+          <InputLabel htmlFor="signup-email">Email</InputLabel>
+          <TextField
+            id="signup-email"
+            mt={50}
+            value={email}
+            fullWidth
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Box my={5}>
             <InputLabel htmlFor="signup-password">Password</InputLabel>
             <TextField

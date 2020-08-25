@@ -14,11 +14,11 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-const App = ({ auth }) => {
-  if (auth.uid && auth.emailVerified) {
+const App = ({ auth, manuallyVerifiedEmail }) => {
+  if (auth.uid && (auth.emailVerified || auth.email === manuallyVerifiedEmail )) {
     return <Home></Home>;
   } else if (auth.uid) {
-    return <AwaitEmail email={auth.email}></AwaitEmail>;
+    return <AwaitEmail auth={auth}></AwaitEmail>;
   } else {
     return <Welcome></Welcome>;
   }
@@ -27,6 +27,7 @@ const App = ({ auth }) => {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebaseAuth.auth,
+    manuallyVerifiedEmail: state.auth.verifiedEmailAddress
   };
 };
 

@@ -13,7 +13,7 @@ const ColorButton = withStyles((theme) => ({
     fontWeight: 900,
     backgroundColor: purple[300],
     "&:hover": {
-      backgroundColor: purple[600],
+      backgroundColor: purple[500],
     },
   },
 }))(Button);
@@ -34,16 +34,14 @@ const SignIn = ({ signIn, signInError, auth }) => {
       <p>{signInError}</p>
       <Box mx="auto">
         <Box>
-          <Box mt={5}>
-            <InputLabel htmlFor="signin-email">Email</InputLabel>
-            <TextField
-              fullWidth
-              id="signin-email"
-              mt={50}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Box>
+          <InputLabel htmlFor="signin-email">Email</InputLabel>
+          <TextField
+            fullWidth
+            id="signin-email"
+            mt={50}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Box my={5}>
             <InputLabel htmlFor="signin-password">Password</InputLabel>
             <TextField

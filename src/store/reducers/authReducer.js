@@ -3,7 +3,9 @@ const initState = {
     signInError: null,
     signOutError: null,
     redirectToEmail: false,
-    emailSentError: null
+    emailSentError: null,
+    checkVerfiedEmailError: null,
+    verifiedEmailAddress: null
 }
 
 const authReducer = (state = initState, action) => {
@@ -36,6 +38,16 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 signOutError: action.err.message
+            }
+        case "CHECK_VERFIFIED_EMAIL_SUCCESS":
+            return {
+                ...state,
+                verifiedEmailAddress: action.email
+            }
+        case "CHECK_VERFIFIED_EMAIL_ERROR":
+            return {
+                ...state,
+                checkVerfiedEmailError: action.err.message
             }
         default:
             return state;

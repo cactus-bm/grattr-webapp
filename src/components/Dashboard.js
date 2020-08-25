@@ -61,7 +61,7 @@ const Dashboard = ({
 
   return (
     <Container maxWidth="md">
-      <Box pt={7} pb={3}>
+      <Box pt={5} pb={3}>
         <Typography variant="h6" component="h6">
           Attributes for {email}
         </Typography>

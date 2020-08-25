@@ -151,8 +151,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-node_packages/
-jspm_packages/
-
-# Serverless directories
-.serverless
+node_modules
