@@ -26,7 +26,7 @@ const AwaitEmail = ({ auth, checkEmailVerified }) => {
         <Typography variant="h6" component="h6">
           <Box pt={10} mb={4}>
             We have sent an email to {auth.email}. Please click the link to confirm
-            your email address. If you have clicked the link and this page has not updated, please road the page.
+            your email address. If you have clicked the link and this page has not updated, please reload the page.
           </Box>
           <Box>
             <ColorButton
