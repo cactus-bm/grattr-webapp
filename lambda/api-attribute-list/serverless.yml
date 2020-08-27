@@ -11,6 +11,6 @@ functions:
     handler: handler.attributes
     events:
       - http:
-          path: attributes/{email}
+          path: "{email}"
           method: get
           cors: true
